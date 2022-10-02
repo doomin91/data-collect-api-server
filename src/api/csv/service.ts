@@ -4,7 +4,11 @@ export default class CsvService {
         this.dao = dao;
     }
 
-    csvList(){
-        return this.dao.csvList()
+    getTransactionById(id: string){
+        return this.dao.getTransactionById(id)
+    }
+
+    insertCsvData(row: string[]){
+        return this.dao.insertCsvData(row)
     }
 }

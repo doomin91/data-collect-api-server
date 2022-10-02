@@ -1,6 +1,6 @@
 import { database } from '../../libs/database'
 
-export default class CsvDao {
+export default class TransactionDao {
     tableName = 'mergeTransaction';
     constructor () {
       let isThereTable
@@ -23,16 +23,15 @@ export default class CsvDao {
         database.exec(sql);
     }
 
+    getTransaction = () => {
+        const sql = database.prepare(`SELECT * FROM ${this.tableName};`);
+        const result = sql.all();
+        return result;
+    }
+
     getTransactionById = (id: string) => {
         const sql = database.prepare(`SELECT * FROM ${this.tableName} WHERE transactionId = ?;`);
         const result = sql.get(id);
         return result;
-    }
-
-    insertCsvData = (row: string[]) => {
-        const sql = database.prepare(`INSERT INTO ${this.tableName} (amount, balance, cancelYn, date, storeId, transactionId) VALUES (
-            ?, ?, ?, ?, ?, ?)`);
-        const result = sql.run(row[0], row[1], row[2], row[3], row[4], row[5])
-        return result
     }
 }    

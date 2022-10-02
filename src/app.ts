@@ -1,5 +1,6 @@
 import express, { Request, Response, NextFunction, Router } from 'express';
 import { swaggerUi, specs } from './libs/swagger';
+import Scheduler from './libs/scheduler'
 
 export default class App {
   app; 
@@ -8,13 +9,14 @@ export default class App {
     this.app = express();
     this.initializeAuthenticate();
     this.initializeControllers(controllers);
+    // this.initializeScheduler(controllers);
     this.initializeErrorHandling();
   }
 
   listen() {
     const port = process.env.PORT || 3000;
     this.app.listen(port, () => {
-      console.log(`Example app listening at http://localhost:${port}`)
+      console.log(`Example app listening at http://localhost:${port}`);
     })
   }
 
@@ -26,18 +28,20 @@ export default class App {
   initializeErrorHandling() {
   }
 
+  initializeScheduler(controllers: any) {
+    const scheduler = new Scheduler(controllers)
+  }
+
   initializeControllers(controllers: any) {
     const router:Router = Router();
     this.app.get('/', (req: Request, res:Response) => {
-      res.send('OK')
+      res.send('OK');
     });
 
     controllers.forEach((controller: any) => {
-      router.use(controller.router)
+      router.use(controller.router);
     })
     this.app.use('/api', router);
-    this.app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(specs, { explorer:true }))
-
-
+    this.app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(specs, { explorer:true }));
   }
 }

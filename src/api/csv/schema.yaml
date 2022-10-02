@@ -1,10 +1,17 @@
 paths:
-  /api/csv/:
-    get:
+  /api/csv/insertDataFromCsvFile/{fileName}:
+    post:
       tags:
         - csv
-      summary: "CSV 조회 ^^"
-      description: "CSV 조회해볼까 ㅎㅎ"
+      summary: "CsvFile to Database"
+      description: "csv_data 폴더 내의 파일을 읽어 Database로 저장합니다."
+      parameters:
+        - name: fileName
+          in: path
+          default: transaction_sample.csv
+          required: true
+          schema:
+            type: string
       responses:
         '200':
           description: Response

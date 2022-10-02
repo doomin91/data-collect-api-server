@@ -1,0 +1,40 @@
+paths:
+  /api/transaction/getTransaction/:
+      get:
+        tags:
+          - transaction
+        summary: "get all transaction list"
+        description: "Transaction Data를 가져옵니다."
+        responses:
+          '200':
+            description: Response
+            content:
+              application/json:
+                schema:
+                  type: object
+                  properties:
+                    ok:
+                      type: boolean
+
+  /api/transaction/getTransaction/{transactionId}:
+      get:
+        tags:
+          - transaction
+        summary: "search transaction by id"
+        description: "Transaction Data를 가져옵니다."
+        parameters:
+          - name: transactionId
+            in: path
+            required: true
+            schema:
+              type: string
+        responses:
+          '200':
+            description: Response
+            content:
+              application/json:
+                schema:
+                  type: object
+                  properties:
+                    ok:
+                      type: boolean

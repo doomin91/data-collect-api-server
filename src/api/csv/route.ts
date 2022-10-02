@@ -10,8 +10,8 @@ export default class CsvRoute {
 
   initializeRouter() {
     const router: Router = Router();
-    const path  : string = '/csv';
-    router.get    ('/', successWrapper(this.component.csvList))
+    const path: string = '/csv';
+    router.post    ('/insertDataFromCsvFile/:fileName', successWrapper(this.component.insertDataFromCsvFile))
     return { path, router }
   }
 
