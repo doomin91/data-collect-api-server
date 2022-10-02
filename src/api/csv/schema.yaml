@@ -1,0 +1,17 @@
+paths:
+  /api/csv/:
+    get:
+      tags:
+        - csv
+      summary: "CSV 조회 ^^"
+      description: "CSV 조회해볼까 ㅎㅎ"
+      responses:
+        '200':
+          description: Response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  ok:
+                    type: boolean
