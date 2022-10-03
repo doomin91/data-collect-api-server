@@ -4,11 +4,15 @@ export default class TransactionService {
         this.dao = dao;
     }
 
-    getTransaction(){
-        return this.dao.getTransaction()
+    getTransaction(startDate:string, endDate:string){
+        return this.dao.getTransaction(startDate, endDate)
     }
 
     getTransactionById(id: string){
         return this.dao.getTransactionById(id)
+    }
+
+    getHistory(){
+        return this.dao.getHistory()
     }
 }

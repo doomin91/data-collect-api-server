@@ -1,10 +1,21 @@
 paths:
-  /api/transaction/getTransaction/:
+  /api/transaction/getTransaction/{startDate}/{endDate}:
       get:
         tags:
           - transaction
-        summary: "get all transaction list"
-        description: "Transaction Data를 가져옵니다."
+        summary: "트랜잭션 가져오기"
+        description: "특정 기간에 속한 트랜잭션 목록을 가져옵니다. startDate, endDate 예시) 2020-01-01, 2022-02-01"
+        parameters:
+          - name: startDate
+            in: path
+            required: true
+            schema:
+              type: string
+          - name: endDate
+            in: path
+            required: true
+            schema:
+              type: string
         responses:
           '200':
             description: Response
@@ -20,7 +31,7 @@ paths:
       get:
         tags:
           - transaction
-        summary: "search transaction by id"
+        summary: "트랜잭션 검색"
         description: "Transaction Data를 가져옵니다."
         parameters:
           - name: transactionId
@@ -28,6 +39,23 @@ paths:
             required: true
             schema:
               type: string
+        responses:
+          '200':
+            description: Response
+            content:
+              application/json:
+                schema:
+                  type: object
+                  properties:
+                    ok:
+                      type: boolean
+
+  /api/transaction/getHistory:
+      get:
+        tags:
+          - transaction
+        summary: "트랜잭션 수집내역 조회"
+        description: "트랜잭션 수집내역을 가져옵니다."
         responses:
           '200':
             description: Response

@@ -23,14 +23,19 @@ export default class TransactionComponent {
     }
 
     getTransaction = (req: Request, res: Response) => {
-        const result = this.getService().getTransaction();
-        console.log(result)
+        const { startDate, endDate } = req.params
+        const result = this.getService().getTransaction(startDate, endDate);
         return result;
     }
 
     getTransactionById = (req: Request, res: Response) => {
         const { transactionId } = req.params;
         const result = this.getService().getTransactionById(transactionId);
+        return result;
+    }
+
+    getHistory = (req: Request, res: Response) => {
+        const result = this.getService().getHistory();
         return result;
     }
 }

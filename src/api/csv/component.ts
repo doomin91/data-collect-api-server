@@ -38,15 +38,16 @@ export default class CsvComponent {
         .on("data", (row:string[]) => {
             try {
                 const chk = this.getService().getTransactionById(row[5])
+                console.log(chk)
                 if(!chk) {
                     const ins = this.getService().insertCsvData(row)
+                    console.log(ins)
                     result.push(ins)
                 }
             } catch (err) {
                 console.log(err)
             }
         })
-
         return new Promise((resolve, reject) => {
             readStream.on("error", (error) => {
                 reject(error.message)

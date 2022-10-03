@@ -11,8 +11,9 @@ export default class TransactionRoute {
   initializeRouter() {
     const router: Router = Router();
     const path: string = '/transaction';
-    router.get     ('/getTransaction/', successWrapper(this.component.getTransaction))
-    router.get    ('/getTransaction/:transactionId', successWrapper(this.component.getTransactionById))
+    router.get ('/getTransaction/:startDate/:endDate', successWrapper(this.component.getTransaction))
+    router.get ('/getTransaction/:transactionId', successWrapper(this.component.getTransactionById))
+    router.get ('/getHistory', successWrapper(this.component.getHistory))
     return { path, router }
   }
 }

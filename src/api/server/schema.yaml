@@ -1,0 +1,53 @@
+paths:
+  /api/server/getData/{port}/{page}:
+    get:
+      tags:
+        - server
+      summary: "서버 데이터 불러오기"
+      description: "(조회 전용) 특정 Port의 데이터를 조회합니다."
+      parameters:
+        - name: port
+          in: path
+          default: 4001
+          required: true
+          schema:
+            type: string
+        - name: page
+          in: path
+          default: 1
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  ok:
+                    type: boolean
+  /api/server/insertData/{port}:
+    post:
+      tags:
+        - server
+      summary: "서버 데이터 저장"
+      description: "특정 Port의 Transaction 데이터를 Database에 저장합니다."
+      parameters:
+        - name: port
+          in: path
+          default: 4001
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  ok:
+                    type: boolean

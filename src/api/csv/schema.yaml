@@ -1,9 +1,9 @@
 paths:
-  /api/csv/insertDataFromCsvFile/{fileName}:
+  /api/csv/insertData/{fileName}:
     post:
       tags:
         - csv
-      summary: "CsvFile to Database"
+      summary: "CSV 저장"
       description: "csv_data 폴더 내의 파일을 읽어 Database로 저장합니다."
       parameters:
         - name: fileName

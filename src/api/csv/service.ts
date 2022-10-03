@@ -1,3 +1,5 @@
+import Transaction from "./interface/Transaction";
+
 export default class CsvService {
     dao
     constructor(dao: any) {
@@ -9,6 +11,14 @@ export default class CsvService {
     }
 
     insertCsvData(row: string[]){
-        return this.dao.insertCsvData(row)
+        const transaction: Transaction = {
+            amount: parseInt(row[0]),
+            balance: parseInt(row[1]),
+            cancelYn: row[2] == 'Y'? 'Y' : 'N',
+            date: row[3],
+            storeId: row[4],
+            transactionId: row[5]
+        }
+        return this.dao.insertCsvData(transaction)
     }
 }

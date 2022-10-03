@@ -2,7 +2,7 @@ import { database } from '../../libs/database'
 import Transaction from "./interface/Transaction";
 import History from './interface/History';
 
-export default class CsvDao {
+export default class ServerDao {
     tableName = 'merge_transaction';
     constructor () {
       let isThereTable
@@ -43,8 +43,7 @@ export default class CsvDao {
         return result;
     }
 
-    insertCsvData = (transaction: Transaction) => {
-        console.log(transaction)
+    insertServerData = (transaction: Transaction) => {
         const sql = database.prepare(`INSERT INTO ${this.tableName} (amount, balance, cancelYn, date, storeId, transactionId) VALUES (
             ?, ?, ?, ?, ?, ?)`);
         const result = sql.run(transaction.amount, transaction.amount, transaction.cancelYn, transaction.date, transaction.storeId, transaction.transactionId)
